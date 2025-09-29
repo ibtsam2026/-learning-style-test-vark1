@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>🌟 اختبار أنماط التعلم VARK</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #00796b;
+        }
+        .question {
+            background-color: #f1f8e9;
+            border: 1px solid #c5e1a5;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+        .question label {
+            display: block;
+            margin: 5px 0;
+        }
+        button {
+            background-color: #00796b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #004d40;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #d32f2f;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌟 اختبار أنماط التعلم VARK</h1>
+    <p style="text-align:center;">اكتشف نمط تعلمك: بصري، سمعي، قراءة/كتابة، حركي</p>
+
+    <form id="quizForm">
+        <div class="question">
+            <p>عند محاولة فهم فكرة جديدة، تفضل:</p>
+            <label><input type="radio" name="q1" value="A"> رؤية صور ورسوم بيانية تشرح الفكرة</label>
+            <label><input type="radio" name="q1" value="B"> الاستماع إلى شرح صوتي أو محاضرة</label>
+            <label><input type="radio" name="q1" value="C"> قراءة نص مكتوب عنها أو تدوين ملاحظات</label>
+            <label><input type="radio" name="q1" value="D"> تطبيقها عمليًا أو تنفيذ تجربة عليها</label>
+        </div>
+
+        <div class="question">
+            <p>عند تعلمك مهارة جديدة، تفضل:</p>
+            <label><input type="radio" name="q2" value="A"> مشاهدة فيديو أو صور توضيحية</label>
+            <label><input type="radio" name="q2" value="B"> الاستماع إلى شرح الخطوات</label>
+            <label><input type="radio" name="q2" value="C"> قراءة دليل التعليمات</label>
+            <label><input type="radio" name="q2" value="D"> تجربتها بنفسك مباشرة</label>
+        </div>
+
+        <div class="question">
+            <p>عندما تحتاج إلى تذكر شيء مهم، تفضل:</p>
+            <label><input type="radio" name="q3" value="A"> تذكر صورة أو مخطط</label>
+            <label><input type="radio" name="q3" value="B"> تكرار الكلمات بصوت عالٍ</label>
+            <label><input type="radio" name="q3" value="C"> كتابتها أو قراءتها عدة مرات</label>
+            <label><input type="radio" name="q3" value="D"> تمثيلها عمليًا أو القيام بحركات</label>
+        </div>
+
+        <div class="question">
+            <p>ما الطريقة المفضلة لديك عند الدراسة؟</p>
+            <label><input type="radio" name="q4" value="A"> استخدام الألوان والمخططات</label>
+            <label><input type="radio" name="q4" value="B"> الاستماع إلى الشرح أو التحدث مع الآخرين</label>
+            <label><input type="radio" name="q4" value="C"> كتابة الملخصات والملاحظات</label>
+            <label><input type="radio" name="q4" value="D"> إعادة تطبيق المفاهيم عمليًا</label>
+        </div>
+
+        <div class="question">
+            <p>عند حضور محاضرة، ما الذي يساعدك أكثر؟</p>
+            <label><input type="radio" name="q5" value="A"> عرض الشرائح أو الفيديوهات</label>
+            <label><input type="radio" name="q5" value="B"> الاستماع إلى شرح المحاضر</label>
+            <label><input type="radio" name="q5" value="C"> قراءة النصوص لاحقًا</label>
+            <label><input type="radio" name="q5" value="D"> المشاركة في أنشطة عملية</label>
+        </div>
+
+        <button type="button" onclick="calculateResult()">عرض النتيجة</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        function calculateResult() {
+            const form = document.forms['quizForm'];
+            const answers = ['q1', 'q2', 'q3', 'q4', 'q5'].map(q => form[q].value);
+            const counts = {A: 0, B: 0, C: 0, D: 0};
+            answers.forEach(a => counts[a]++);
+
+            let max = Math.max(...Object.values(counts));
+            let dominant = Object.keys(counts).find(k => counts[k] === max);
+
+            let resultText = '';
+            if (dominant === 'A') resultText = '🌈 نمطك هو: بصري';
+            else if (dominant === 'B') resultText = '🔊 نمطك هو: سمعي';
+            else if (dominant === 'C') resultText = '📖 نمطك هو: قراءة / كتابة';
+            else if (dominant === 'D') resultText = '🎯 نمطك هو: حركي';
+
+            document.getElementById('result').innerText = resultText;
+        }
+    </script>
+</body>
+</html>
