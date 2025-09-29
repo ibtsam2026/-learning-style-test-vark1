@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>اختبار أنماط التعلم</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #f0f8ff, #e6f7ff);
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #005a9c;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .question {
+            background-color: #ffffff;
+            border: 1px solid #cce7ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .question h3 {
+            margin-top: 0;
+            color: #0078d4;
+        }
+        label {
+            display: block;
+            margin: 8px 0;
+        }
+        button {
+            background-color: #0078d4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+        button:hover {
+            background-color: #005a9c;
+        }
+        #result {
+            text-align: center;
+            font-size: 24px;
+            color: #d83b01;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌟 اختبار أنماط التعلم للطالبة 🌟</h1>
+
+    <div class="question">
+        <h3>1. عندما أتعلم شيئًا جديدًا، أفضل أن:</h3>
+        <label><input type="radio" name="q1" value="بصري"> أرى صورًا أو رسومًا توضيحية</label>
+        <label><input type="radio" name="q1" value="سمعي"> أستمع إلى شرح صوتي</label>
+        <label><input type="radio" name="q1" value="حسي"> أجربه بنفسي عمليًا</label>
+    </div>
+
+    <div class="question">
+        <h3>2. عندما أراجع دروسي، أفضل أن:</h3>
+        <label><input type="radio" name="q2" value="بصري"> أستخدم خرائط ذهنية أو ملخصات مرئية</label>
+        <label><input type="radio" name="q2" value="سمعي"> أشرحها بصوت عالٍ أو أستمع لتسجيل</label>
+        <label><input type="radio" name="q2" value="حسي"> أكتبها أو أطبقها عمليًا</label>
+    </div>
+
+    <div class="question">
+        <h3>3. عندما أقرأ، أفضل أن:</h3>
+        <label><input type="radio" name="q3" value="بصري"> أرى الصور والرسوم التوضيحية</label>
+        <label><input type="radio" name="q3" value="سمعي"> أستمع لشخص يقرأ لي</label>
+        <label><input type="radio" name="q3" value="حسي"> أقرأ وأدوّن الملاحظات بيدي</label>
+    </div>
+
+    <div class="question">
+        <h3>4. عندما أتعلم مهارة جديدة، أفضل أن:</h3>
+        <label><input type="radio" name="q4" value="بصري"> أرى فيديو يشرح الطريقة</label>
+        <label><input type="radio" name="q4" value="سمعي"> أستمع لتعليمات صوتية</label>
+        <label><input type="radio" name="q4" value="حسي"> أجربها بنفسي مباشرة</label>
+    </div>
+
+    <div class="question">
+        <h3>5. عندما أشرح شيئًا للآخرين، أفضل أن:</h3>
+        <label><input type="radio" name="q5" value="بصري"> أستخدم صور أو عروض تقديمية</label>
+        <label><input type="radio" name="q5" value="سمعي"> أشرح بصوتي فقط</label>
+        <label><input type="radio" name="q5" value="حسي"> أستخدم أدوات أو أمثلة عملية</label>
+    </div>
+
+    <button onclick="showResult()">عرض النتيجة</button>
+    <div id="result"></div>
+
+    <script>
+        function showResult() {
+            const answers = ['q1', 'q2', 'q3', 'q4', 'q5'];
+            const counts = { 'بصري': 0, 'سمعي': 0, 'حسي': 0 };
+
+            for (let q of answers) {
+                const selected = document.querySelector('input[name="' + q + '"]:checked');
+                if (selected) {
+                    counts[selected.value]++;
+                }
+            }
+
+            let maxType = '';
+            let maxCount = 0;
+            for (let type in counts) {
+                if (counts[type] > maxCount) {
+                    maxCount = counts[type];
+                    maxType = type;
+                }
+            }
+
+            if (maxCount === 0) {
+                document.getElementById('result').innerText = "يرجى الإجابة على جميع الأسئلة أولاً.";
+            } else {
+                document.getElementById('result').innerText = "نمط التعلم الأكثر شيوعًا لديك هو: " + maxType;
+            }
+        }
+    </script>
+</body>
+</html>
